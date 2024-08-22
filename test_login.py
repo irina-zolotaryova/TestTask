@@ -67,5 +67,5 @@ def test_EmptyUsername(page):
     page.get_by_placeholder("Password").fill("admin")
     page.get_by_role("button", name="Login").click()
 
-    (expect(page.get_by_text("User not found"), "Success login with empty username")\
-        .to_have_text("User not found"))
+    expect(page.get_by_text("User not found"), "Success login with empty username")\
+        .to_have_text("User not found")
