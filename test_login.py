@@ -51,3 +51,21 @@ def test_IncorrectPassword(page):
 
     expect(page.get_by_text("Incorrect password"), "Success login with incorrect password")\
         .to_have_text("Incorrect password")
+
+def test_EmptyPassword(page):
+    page.goto(baseUrl)
+    page.get_by_placeholder("Username").click()
+    page.get_by_placeholder("Username").fill("admin")
+    page.get_by_role("button", name="Login").click()
+
+    expect(page.get_by_text("Incorrect password"), "Success login with empty password")\
+        .to_have_text("Incorrect password")
+
+def test_EmptyUsername(page):
+    page.goto(baseUrl)
+    page.get_by_placeholder("Password").click()
+    page.get_by_placeholder("Password").fill("admin")
+    page.get_by_role("button", name="Login").click()
+
+    (expect(page.get_by_text("User not found"), "Success login with empty username")\
+        .to_have_text("User not found"))
